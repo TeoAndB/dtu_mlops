@@ -58,7 +58,7 @@ def validation(model, testloader, criterion):
     return test_loss, accuracy
 
 
-def train(model, trainloader, testloader, criterion, optimizer=None, epochs=5, print_every=40):
+def train(model, trainloader, testloader, criterion, optimizer=None, epochs=5, print_every=200):
     if optimizer is None:
         optimizer = torch.optim.Adam(model.parameters(), lr=1e-2)
     steps = 0
@@ -92,7 +92,7 @@ def train(model, trainloader, testloader, criterion, optimizer=None, epochs=5, p
                 print("Epoch: {}/{}.. ".format(e+1, epochs),
                       "Training Loss: {:.3f}.. ".format(running_loss/print_every),
                       "Test Loss: {:.3f}.. ".format(test_loss/len(testloader)),
-                      "Test Accuracy: {:.3f}".format(accuracy/len(testloader)))
+                      "Test Accuracy: {:.3f}%".format(accuracy/len(testloader)*100))
                 
                 running_loss = 0
                 
